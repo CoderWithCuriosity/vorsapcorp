@@ -4,8 +4,8 @@ const path = require("path");
 const fs = require("fs");
 const questions = require("../utils/questions"); // Import the questions array
 
-// Ensure the 'data_set' folder exists
-const DATA_SET_FOLDER = path.join(__dirname, "data_set");
+// Ensure the 'dataset' folder exists
+const DATA_SET_FOLDER = "dataset";
 if (!fs.existsSync(DATA_SET_FOLDER)) {
     fs.mkdirSync(DATA_SET_FOLDER);
 }
@@ -35,7 +35,7 @@ const upload = multer({ storage, fileFilter });
 const router = express.Router();
 
 // Upload route
-router.post("/upload", upload.single("file"), (req, res) => {
+router.post("/", upload.single("file"), (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: "No file uploaded or invalid file type!" });
     }

@@ -1,6 +1,8 @@
 const express = require("express");
 const { ACTIVE_MODEL, DATA_SET } = require("./config");
-const uploadHandler = require("./uploadHandler");
+const uploadHandler = require("./functions/uploadHandler");
+const questions = require("./functions/questions");
+const getNextQuestion = require("./functions/getNextQuestion");
 
 const models = {
     deepseek: require("./models/deepseek"),
@@ -14,9 +16,10 @@ const askAI = models[ACTIVE_MODEL];
 
 const app = express();
 app.use(express.json());
-
-
 app.use("/upload", uploadHandler);
+app.use("/questions", questions);
+app.use("/next-question", getNextQuestion);
+// app.get("/questions", (req, res) => res.send("Server is running!"));
 
 app.post("/ask", async (req, res) => {
     // Parse Excel on startup
