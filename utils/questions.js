@@ -20,11 +20,27 @@ const questions = [
         }
     },
     {
+        question: "Number of Timepoints?",
+        text: "Specify the number of timepoints in the study",
+        options: ["1", "2", "3", "More"]
+    },
+    {
+        question: "Number of groups",
+        text: "Specify the number of groups in the study",
+        options: ["1", "2", "3", "More"]
+    },
+    {
+        question: "Total Number of Samples",
+        text: "Specify the total number of samples collected",
+        options: ["<10", "10-50", "50-100", "100+"]
+    },
+    {
         question: "Type of analysis",
         text: "Choosing the type of statistical analysis",
         options: ["Yes", "No"],
         followUp: {
-            Yes: ["Between", "Within", "Both"]
+            Yes: ["Between", "Within", "Both"],
+            No: ["retry"]
         }
     },
     {
