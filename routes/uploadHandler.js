@@ -2,7 +2,6 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-const questions = require("../utils/questions"); // Import the questions array
 
 // Ensure the 'dataset' folder exists
 const DATA_SET_FOLDER = "dataset";
@@ -39,14 +38,11 @@ router.post("/", upload.single("file"), (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: "No file uploaded or invalid file type!" });
     }
-    // Get the first question
-    const firstQuestion = questions[0];
-
+    
     res.json({
         message: "File uploaded successfully!",
         filename: req.file.filename,
         originalFilename: req.file.originalname, // Optional: Show original file name
-        nextQuestion: firstQuestion
     });
 });
 
